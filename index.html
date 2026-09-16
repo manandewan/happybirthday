@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Happy Birthday Mrigesh! 🎂✨</title>
+  
+  <!-- SEO & Social Sharing Meta Tags -->
+  <meta name="description" content="A special, thoughtful birthday celebration page made with love for Mrigesh Dewan by his brother Manan." />
+  <meta property="og:title" content="Happy Birthday Mrigesh! 🎂💛" />
+  <meta property="og:description" content="To the coolest brother, IIM Indore & XLRI rockstar, and Blinkit legend. Tap to blow out the candles!" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#FFF5F7" />
+
+  <!-- Google Fonts for cute, modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Confetti Canvas overlay -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Floating Audio & Celebration Controls -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <span class="sparkle-icon">✨</span>
+      <span>From Manan with Love</span>
+    </div>
+    <div class="nav-actions">
+      <button id="music-btn" class="pill-btn music-btn" aria-label="Toggle Birthday Melody" title="Play cute birthday tune">
+        <span class="btn-icon" id="music-icon">🎵</span>
+        <span class="btn-text" id="music-text">Play Melody</span>
+      </button>
+      <button id="confetti-btn" class="pill-btn sparkle-btn" aria-label="Shower Confetti" title="Burst Confetti">
+        🎉 Confetti!
+      </button>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="hero-badge animate-bounce-gentle">
+        <span class="badge-dot"></span> Official Celebration Portal 🎈
+      </div>
+
+      <h1 class="hero-title">
+        Happy Birthday, <br class="mobile-only" />
+        <span class="gradient-text">Mrigesh!</span> 🎂✨
+      </h1>
+
+      <p class="hero-subtitle">
+        To my incredible brother, life mentor, problem solver, and all-around absolute legend. Today is all about celebrating YOU!
+      </p>
+
+      <!-- Cute Personality Badges -->
+      <div class="tag-cloud">
+        <span class="tag tag-yellow">🐐 The GOAT Brother</span>
+        <span class="tag tag-blue">🎓 IIM Indore IPM Star</span>
+        <span class="tag tag-crimson">🏆 XLRI Jamshedpur Champ</span>
+        <span class="tag tag-green">⚡️ Blinkit Speed Demon</span>
+        <span class="tag tag-purple">🧠 Chief Brainiac Officer</span>
+        <span class="tag tag-pink">💛 100% Manan's Favourite</span>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE BLINKIT DELIVERY WIDGET -->
+    <section class="blinkit-delivery-card card-glow">
+      <div class="delivery-header">
+        <div class="delivery-brand">
+          <div class="blinkit-pill">
+            <span class="blink-dot"></span>
+            <strong>blinkit</strong>
+            <span class="b-badge">BIRTHDAY EDITION</span>
+          </div>
+          <span class="eta-pill">⚡️ Instant Delivery</span>
+        </div>
+        <p class="delivery-caption">Order #BDAY-MRIGESH-2026</p>
+      </div>
+
+      <div class="order-items-preview">
+        <div class="order-item">
+          <span class="item-icon">🎂</span>
+          <div class="item-details">
+            <span class="item-name">1x Fresh Belgian Truffle Cake</span>
+            <span class="item-meta">Extra sprinkles & candles included</span>
+          </div>
+          <span class="item-price">FREE ✨</span>
+        </div>
+
+        <div class="order-item">
+          <span class="item-icon">🤗</span>
+          <div class="item-details">
+            <span class="item-name">1,000,000x Warm Brother Hugs</span>
+            <span class="item-meta">Non-expiring lifetime supply</span>
+          </div>
+          <span class="item-price">PRICELESS ❤️</span>
+        </div>
+
+        <div class="order-item">
+          <span class="item-icon">🚀</span>
+          <div class="item-details">
+            <span class="item-name">Infinite Success & Big Wins</span>
+            <span class="item-meta">Pre-approved by the universe</span>
+          </div>
+          <span class="item-price">UNLOCKED 🌟</span>
+        </div>
+      </div>
+
+      <div class="delivery-status-timeline">
+        <div class="timeline-step completed">
+          <div class="step-circle">✓</div>
+          <span>Born an Absolute Genius</span>
+        </div>
+        <div class="timeline-step completed">
+          <div class="step-circle">✓</div>
+          <span>Aced IPM & XLRI</span>
+        </div>
+        <div class="timeline-step completed">
+          <div class="step-circle">✓</div>
+          <span>Crushing it at Blinkit</span>
+        </div>
+        <div class="timeline-step active">
+          <div class="step-circle pulsing">⚡️</div>
+          <span>Party Mode Activated!</span>
+        </div>
+      </div>
+
+      <div class="delivery-actions">
+        <button id="send-hugs-btn" class="action-btn blinkit-btn">
+          <span>🛵 Tap to Rush-Deliver Love & Hugs!</span>
+          <span class="btn-bubble">0 min ETA</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE CAKE & CANDLE BLOWING -->
+    <section class="interactive-cake-section">
+      <div class="section-badge">Interactive Birthday Ritual</div>
+      <h2 class="section-title">Blow Out the Candles! 🕯️</h2>
+      <p class="section-subtitle">
+        Tap on each candle flame to extinguish it, make your secret birthday wish, and unlock the celebration!
+      </p>
+
+      <div class="cake-container">
+        <!-- Interactive Cake Illustration -->
+        <div class="cake" id="interactive-cake">
+          <!-- Plate -->
+          <div class="cake-plate"></div>
+
+          <!-- Cake Layers -->
+          <div class="layer layer-bottom">
+            <div class="frosting-drip drip-1"></div>
+            <div class="frosting-drip drip-2"></div>
+            <div class="frosting-drip drip-3"></div>
+            <div class="frosting-drip drip-4"></div>
+            <div class="layer-fill"></div>
+          </div>
+          <div class="layer layer-middle">
+            <div class="frosting-drip drip-1"></div>
+            <div class="frosting-drip drip-2"></div>
+            <div class="frosting-drip drip-3"></div>
+            <div class="layer-fill"></div>
+          </div>
+          <div class="layer layer-top">
+            <div class="strawberry s1">🍓</div>
+            <div class="strawberry s2">✨</div>
+            <div class="strawberry s3">🍓</div>
+          </div>
+
+          <!-- Candles Container -->
+          <div class="candles-wrapper">
+            <!-- Candle 1 -->
+            <button class="candle-btn" data-candle="1" aria-label="Blow candle 1">
+              <div class="flame flame-1" id="flame-1"></div>
+              <div class="smoke" id="smoke-1"></div>
+              <div class="candle candle-pink">
+                <div class="stripes"></div>
+              </div>
+            </button>
+
+            <!-- Candle 2 (Center) -->
+            <button class="candle-btn" data-candle="2" aria-label="Blow candle 2">
+              <div class="flame flame-2" id="flame-2"></div>
+              <div class="smoke" id="smoke-2"></div>
+              <div class="candle candle-yellow">
+                <div class="stripes"></div>
+              </div>
+            </button>
+
+            <!-- Candle 3 -->
+            <button class="candle-btn" data-candle="3" aria-label="Blow candle 3">
+              <div class="flame flame-3" id="flame-3"></div>
+              <div class="smoke" id="smoke-3"></div>
+              <div class="candle candle-blue">
+                <div class="stripes"></div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wish Status Text -->
+      <div class="wish-status" id="wish-status">
+        <span id="wish-text">Tap the candles above to blow them out (3 remaining)! 💨</span>
+      </div>
+
+      <div class="cake-controls">
+        <button id="relight-btn" class="pill-btn light-btn hidden" aria-label="Relight Candles">
+          🔥 Relight the Candles
+        </button>
+      </div>
+    </section>
+
+    <!-- BROTHERLY STATS & AWARDS -->
+    <section class="stats-section">
+      <div class="section-badge">Verified Brother Metrics</div>
+      <h2 class="section-title">Official Brother Hall of Fame 🏆</h2>
+      <p class="section-subtitle">Stats independently audited & certified by Manan Dewan</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon-wrap bg-yellow-soft">⚡️</div>
+          <div class="stat-value">10 Mins</div>
+          <div class="stat-label">Problem Solving Speed</div>
+          <p class="stat-desc">Whether it's career advice, case competitions, or life bugs—fixed in record time.</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrap bg-blue-soft">🎓</div>
+          <div class="stat-value">IIM + XLRI</div>
+          <div class="stat-label">Academic & Leadership Aura</div>
+          <p class="stat-desc">From IPM at IIM Indore to XLRI SportsCom leader—always raising the bar high.</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrap bg-pink-soft">🐐</div>
+          <div class="stat-value">#1</div>
+          <div class="stat-label">Brother in the World</div>
+          <p class="stat-desc">Unbeatable banter, endless patience, always has my back no matter what.</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrap bg-purple-soft">🎯</div>
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Clutch Moments Success</div>
+          <p class="stat-desc">From sports tournaments to high-stakes decisions, you always deliver the clutch win.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEARTFELT BROTHER LETTERS (INTERACTIVE TABS / FLIP CARDS) -->
+    <section class="letters-section">
+      <div class="section-badge">From The Heart</div>
+      <h2 class="section-title">A Few Things I Want You to Know 💌</h2>
+      <p class="section-subtitle">Tap each card to flip and read the secret brotherly message!</p>
+
+      <div class="letters-grid">
+        <!-- Card 1 -->
+        <div class="flip-card" tabindex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front card-front-1">
+              <span class="card-tag">Memory Lane 🌿</span>
+              <div class="card-big-emoji">👦🏻👦🏻</div>
+              <h3>Growing Up With You</h3>
+              <span class="tap-hint">Tap to flip & read ↺</span>
+            </div>
+            <div class="flip-card-back">
+              <h3>The Best Partner-in-Crime</h3>
+              <p>
+                From all the silly childhood fights and late-night talks to seeing you grow into who you are today, there's nobody else I'd rather share this crazy journey with. You've always set the best example.
+              </p>
+              <div class="card-signature">— Manan</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="flip-card" tabindex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front card-front-2">
+              <span class="card-tag">Inspiration ✨</span>
+              <div class="card-big-emoji">🚀</div>
+              <h3>Watching You Excel</h3>
+              <span class="tap-hint">Tap to flip & read ↺</span>
+            </div>
+            <div class="flip-card-back">
+              <h3>Pure Inspiration</h3>
+              <p>
+                Whether cracking IPM, crushing it at XLRI, leading sports, or building things at Blinkit, your focus and tenacity are truly inspiring. You make big dreams look effortless.
+              </p>
+              <div class="card-signature">— Proud Little Bro</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="flip-card" tabindex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front card-front-3">
+              <span class="card-tag">The Bond 🤞</span>
+              <div class="card-big-emoji">🤝</div>
+              <h3>Always Got Your Back</h3>
+              <span class="tap-hint">Tap to flip & read ↺</span>
+            </div>
+            <div class="flip-card-back">
+              <h3>Through Everything</h3>
+              <p>
+                No matter how busy schedules get or how many miles apart we might be, you know I'm always just one phone call away. Through all highs and lows, your brother is right here cheering for you!
+              </p>
+              <div class="card-signature">— Always & Forever</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="flip-card" tabindex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front card-front-4">
+              <span class="card-tag">The Year Ahead 🌟</span>
+              <div class="card-big-emoji">🥂</div>
+              <h3>Birthday Wish for You</h3>
+              <span class="tap-hint">Tap to flip & read ↺</span>
+            </div>
+            <div class="flip-card-back">
+              <h3>May This Year Be Huge!</h3>
+              <p>
+                May this year bring you crazy career breakthroughs, deep happiness, peak fitness, epic travels, peace of mind, and lots of celebratory drinks and treats! You deserve every bit of it.
+              </p>
+              <div class="card-signature">— Cheers to You! 🥂</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BROTHERLY PERK COUPON MACHINE -->
+    <section class="coupon-section">
+      <div class="section-badge">Birthday Privileges</div>
+      <h2 class="section-title">Mrigesh's Birthday Perk Machine 🎁</h2>
+      <p class="section-subtitle">Tap below to redeem your official birthday coupons from Manan!</p>
+
+      <div class="coupon-card">
+        <div class="coupon-display" id="coupon-display">
+          <div class="coupon-icon" id="coupon-icon">🎟️</div>
+          <div class="coupon-badge" id="coupon-badge">LIFETIME VALIDITY</div>
+          <h3 class="coupon-title" id="coupon-title">Tap The Button Below!</h3>
+          <p class="coupon-desc" id="coupon-desc">Discover what sweet perk or hilarious favour you just unlocked today.</p>
+        </div>
+
+        <button id="draw-coupon-btn" class="draw-btn">
+          <span>✨ Draw a New Birthday Perk</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- FINAL WARM WISH & FOOTER -->
+    <footer class="birthday-footer">
+      <div class="footer-heart-anim">❤️</div>
+      <h2>Have the Happiest Birthday Ever, Mrigesh!</h2>
+      <p class="footer-love">Crafted with infinite love, code & brotherly pride by <strong>Manan Dewan</strong></p>
+      
+      <div class="footer-links">
+        <a href="https://in.linkedin.com/in/mrigesh-dewan" target="_blank" rel="noopener noreferrer" class="footer-badge">
+          <span>Connect with the Birthday Boy on LinkedIn</span> ↗
+        </a>
+      </div>
+
+      <div class="easter-egg">
+        <p>Tip: Tap anywhere on the screen for floating birthday hearts & sparkles! 🎈</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- CELEBRATION MODAL (Triggered when candles are blown) -->
+  <dialog id="celebration-dialog" class="celebration-dialog">
+    <div class="dialog-content">
+      <div class="dialog-sparkles">🌟 🎂 🎊</div>
+      <h2>WISH GRANTED! 💫</h2>
+      <p class="dialog-text">
+        May all your deepest dreams and highest ambitions come true this year, Mrigesh! Keep shining bright, breaking barriers, and making us proud.
+      </p>
+      <div class="dialog-buttons">
+        <button id="close-dialog-btn" class="pill-btn primary-btn">
+          Let's Celebrate! 🎉
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
