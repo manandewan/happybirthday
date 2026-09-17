@@ -688,9 +688,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0;
+  padding: 8px 12px;
+  margin: -8px -6px;
+  min-width: 48px;
+  min-height: 72px;
   touch-action: manipulation;
   outline: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .candle {
@@ -861,7 +866,13 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.flip-card:hover .flip-card-inner,
+@media (hover: hover) and (pointer: fine) {
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+    box-shadow: var(--shadow-md);
+  }
+}
+
 .flip-card.flipped .flip-card-inner {
   transform: rotateY(180deg);
   box-shadow: var(--shadow-md);
@@ -1210,10 +1221,27 @@ body {
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 16px 10px;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .stat-desc {
+    font-size: 0.76rem;
   }
 
   .letters-grid {
     grid-template-columns: 1fr;
+  }
+
+  .flip-card {
+    height: 290px;
   }
 
   .cake-container {
@@ -1221,26 +1249,45 @@ body {
   }
 
   .cake-plate {
-    width: 220px;
+    width: min(220px, 85vw);
   }
 
   .layer-bottom {
-    width: 180px;
+    width: min(180px, 75vw);
     height: 52px;
   }
 
   .layer-middle {
-    width: 145px;
+    width: min(145px, 62vw);
     height: 44px;
   }
 
   .layer-top {
-    width: 110px;
+    width: min(110px, 50vw);
     height: 34px;
   }
 
   .candles-wrapper {
-    gap: 18px;
+    gap: 16px;
     top: -42px;
+  }
+
+  .coupon-card {
+    padding: 24px 14px;
+  }
+
+  .coupon-display {
+    padding: 18px 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .top-nav {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

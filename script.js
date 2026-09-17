@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize all interactive components
+  setupAudioUnlock();
   initConfetti();
   initCandles();
   initBlinkitDelivery();
@@ -37,7 +38,15 @@ function initConfetti() {
     confettiCanvas.height = window.innerHeight;
   }
   resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+
+  let lastWidth = window.innerWidth;
+  window.addEventListener('resize', () => {
+    // Only resize if width changed (orientation or major resize), avoiding URL bar collapse glitch
+    if (Math.abs(window.innerWidth - lastWidth) > 30) {
+      lastWidth = window.innerWidth;
+      resizeCanvas();
+    }
+  });
 
   const confettiBtn = document.getElementById('confetti-btn');
   if (confettiBtn) {
@@ -217,6 +226,19 @@ function initCandles() {
       playSound('pop');
       celebrationDialog.close();
       fireConfettiShower(60);
+    });
+
+    // Close on backdrop tap for mobile convenience
+    celebrationDialog.addEventListener('click', (e) => {
+      const rect = celebrationDialog.getBoundingClientRect();
+      const clickedInDialog = (
+        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+      );
+      if (!clickedInDialog) {
+        playSound('pop');
+        celebrationDialog.close();
+      }
     });
   }
 }
@@ -459,6 +481,21 @@ function playSound(type) {
   }
 }
 
+// Audio unlock on first touch for iOS / Mobile WebKit
+function setupAudioUnlock() {
+  const unlock = () => {
+    const ctx = getAudioContext();
+    if (ctx && ctx.state === 'suspended') {
+      ctx.resume();
+    }
+  };
+  window.addEventListener('touchstart', unlock, { passive: true, once: true });
+  window.addEventListener('click', unlock, { once: true });
+}
+
+// Track active oscillators for the melody so pause stops sound immediately
+let activeMelodyNodes = [];
+
 // "Happy Birthday" melody synthesizer in lovely music-box tones
 function playBirthdayNote(freq, duration, startTime) {
   const ctx = getAudioContext();
@@ -478,8 +515,30 @@ function playBirthdayNote(freq, duration, startTime) {
   osc.connect(gain);
   gain.connect(ctx.destination);
 
-  osc.start(startTime);
-  osc.stop(startTime + duration);
+  try {
+    osc.start(startTime);
+    osc.stop(startTime + duration);
+    activeMelodyNodes.push(osc);
+    osc.onended = () => {
+      const idx = activeMelodyNodes.indexOf(osc);
+      if (idx > -1) activeMelodyNodes.splice(idx, 1);
+    };
+  } catch (err) {
+    // Graceful catch for mobile state transitions
+  }
+}
+
+function stopMelodyPlayback() {
+  if (musicInterval) {
+    clearTimeout(musicInterval);
+    musicInterval = null;
+  }
+  activeMelodyNodes.forEach((node) => {
+    try {
+      node.stop();
+    } catch (e) {}
+  });
+  activeMelodyNodes = [];
 }
 
 // Note frequencies (C4 to C5 scale)
@@ -505,7 +564,7 @@ const BIRTHDAY_SONG = [
 
 function playFullMelody() {
   const ctx = getAudioContext();
-  if (!ctx) return;
+  if (!ctx || !isMusicPlaying) return;
 
   let currentMelodyTime = ctx.currentTime + 0.1;
   BIRTHDAY_SONG.forEach(([noteName, duration]) => {
@@ -545,12 +604,22 @@ function initAudioSystem() {
       musicBtn.classList.remove('playing');
       musicIcon.textContent = '🎵';
       musicText.textContent = 'Play Melody';
-      if (musicInterval) clearTimeout(musicInterval);
-      if (audioCtx) {
-        audioCtx.close().then(() => {
-          audioCtx = null;
-        });
+      stopMelodyPlayback();
+    }
+  });
+
+  // Handle mobile tab switching / locking screen
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && isMusicPlaying) {
+      stopMelodyPlayback();
+      if (audioCtx && audioCtx.state === 'running') {
+        audioCtx.suspend();
       }
+    } else if (!document.hidden && isMusicPlaying) {
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      playFullMelody();
     }
   });
 }
@@ -575,12 +644,29 @@ function createFloatingEmoji(x, y, emoji) {
 
 function initTapEffects() {
   const TAP_EMOJIS = ['🎈', '✨', '🎂', '💛', '🦄', '🎉', '🌟', '🥳'];
+  let lastTouchTime = 0;
   
-  window.addEventListener('click', (e) => {
-    // Only spawn if not clicking an interactive button/link
-    if (e.target.closest('button, a, input, dialog, .flip-card')) return;
-
+  function triggerBubble(clientX, clientY, target) {
+    if (!clientX || !clientY) return;
+    // Don't spawn on top of interactive action controls
+    if (target && target.closest && target.closest('button, a, input, dialog, .candle-btn, .flip-card')) {
+      return;
+    }
     const randomEmoji = TAP_EMOJIS[Math.floor(Math.random() * TAP_EMOJIS.length)];
-    createFloatingEmoji(e.clientX, e.clientY, randomEmoji);
+    createFloatingEmoji(clientX, clientY, randomEmoji);
+  }
+
+  window.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches.length > 0) {
+      lastTouchTime = Date.now();
+      const touch = e.touches[0];
+      triggerBubble(touch.clientX, touch.clientY, e.target);
+    }
+  }, { passive: true });
+
+  window.addEventListener('click', (e) => {
+    // Avoid double firing on mobile where both touchstart and click fire
+    if (Date.now() - lastTouchTime < 400) return;
+    triggerBubble(e.clientX, e.clientY, e.target);
   });
 }
