@@ -14,7 +14,7 @@ A heartfelt, cutesy, and mobile-first birthday website handcrafted with love by 
 
 2. **Blinkit 10-Minute Birthday Delivery Widget**:
    - A playful homage to Mrigesh's role at Blinkit.
-   - Realistic order receipt: *1x Fresh Belgian Truffle Cake*, *1,000,000x Warm Brother Hugs*, and *Infinite Success & Big Wins*.
+   - Realistic order receipt: *1x Fresh Belgian Truffle Cake* and *Infinite Success & Big Wins*.
    - Live delivery progress tracker with an interactive "Rush-Deliver Love & Hugs" instant celebration trigger.
 
 3. **Interactive "Blow Out The Candles" Cake**:
